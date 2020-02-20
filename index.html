@@ -248,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/hello-word/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/js%E6%B7%B1%E5%85%A5-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhaha">
@@ -267,7 +267,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/20/hello-word/" itemprop="url">hello_word</a></h1>
+                <a class="post-title-link" href="/2020/02/20/js%E6%B7%B1%E5%85%A5-1/" itemprop="url">js深入_1(类型 & 值)</a></h1>
         
 
         <div class="post-meta">
@@ -279,7 +279,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-20T11:38:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-20T13:01:44+08:00">
                 2020-02-20
               </time>
             
@@ -341,7 +341,19 @@
       
         
           
-            <blockquote class="blockquote-center"></blockquote>
+            <h3 id="检测特殊类型方法"><a href="#检测特殊类型方法" class="headerlink" title="检测特殊类型方法"></a>检测特殊类型方法</h3><ul>
+<li>null:  !a &amp;&amp; typeof a === ‘object’</li>
+<li>{}:  Object.keys(a).length === 0</li>
+<li>[]: <ul>
+<li>a instanceOf Array   (必须为对象)</li>
+<li>Object.protopype.toString.call(a)  // [object array]</li>
+<li>isArray</li>
+</ul>
+</li>
+</ul>
+<h3 id="undefined-amp-undeclared"><a href="#undefined-amp-undeclared" class="headerlink" title="undefined &amp; undeclared"></a>undefined &amp; undeclared</h3><p>typeof 处理未初始化和未声明的变量，结果都是 undefined。但是调用未声明的变量会有ReferenceError。检测对象是否声明并初始化时，要不就是用typeOf，要不就用对象格式  </p>
+<p>if(typeof a === ‘undefined’)  or if(window.a)</p>
+<blockquote class="blockquote-center"></blockquote>
 
 <div class="note danger"><p>注意：所有文章除特别说明外均属原创，转载请注明出处！</p></div>
 
