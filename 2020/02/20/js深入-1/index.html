@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="检测特殊类型方法 null:  !a &amp;&amp; typeof a &#x3D;&#x3D;&#x3D; ‘object’ {}:  Object.keys(a).length &#x3D;&#x3D;&#x3D; 0 []:  a instanceOf Array   (必须为对象) Object.protopype.toString.call(a)  &#x2F;&#x2F; [object array] isArray    undefined &amp; u">
+<meta name="description" content="检测特殊类型方法 null:  !a &amp;&amp; typeof a &#x3D;&#x3D;&#x3D; ‘object’  {}:  Object.keys(a).length &#x3D;&#x3D;&#x3D; 0  []:   a instanceOf Array   (必须为对象)  Object.protopype.toString.call(a)  &#x2F;&#x2F; [object array] Object类型都有内部属性[[Class]]，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js深入_1(类型 &amp; 值)">
+<meta property="og:title" content="js深入_1(类型 &amp; 值 &amp; 原生函数)">
 <meta property="og:url" content="http://yoursite.com/2020/02/20/js%E6%B7%B1%E5%85%A5-1/index.html">
 <meta property="og:site_name" content="zhaha&#39;s hole">
-<meta property="og:description" content="检测特殊类型方法 null:  !a &amp;&amp; typeof a &#x3D;&#x3D;&#x3D; ‘object’ {}:  Object.keys(a).length &#x3D;&#x3D;&#x3D; 0 []:  a instanceOf Array   (必须为对象) Object.protopype.toString.call(a)  &#x2F;&#x2F; [object array] isArray    undefined &amp; u">
+<meta property="og:description" content="检测特殊类型方法 null:  !a &amp;&amp; typeof a &#x3D;&#x3D;&#x3D; ‘object’  {}:  Object.keys(a).length &#x3D;&#x3D;&#x3D; 0  []:   a instanceOf Array   (必须为对象)  Object.protopype.toString.call(a)  &#x2F;&#x2F; [object array] Object类型都有内部属性[[Class]]，">
 <meta property="article:published_time" content="2020-02-20T05:01:44.000Z">
-<meta property="article:modified_time" content="2020-02-20T05:37:59.329Z">
+<meta property="article:modified_time" content="2020-02-25T07:45:37.814Z">
 <meta property="article:author" content="zhaha">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
@@ -125,7 +125,7 @@
 
 
 
-  <title>js深入_1(类型 & 值) | zhaha's hole</title>
+  <title>js深入_1(类型 & 值 & 原生函数) | zhaha's hole</title>
   
 
 
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js深入_1(类型 & 值)</h1>
+          <h1 class="post-title" itemprop="name headline">js深入_1(类型 & 值 & 原生函数)</h1>
         
 
         <div class="post-meta">
@@ -342,17 +342,58 @@
 
       
         <h3 id="检测特殊类型方法"><a href="#检测特殊类型方法" class="headerlink" title="检测特殊类型方法"></a>检测特殊类型方法</h3><ul>
-<li>null:  !a &amp;&amp; typeof a === ‘object’</li>
-<li>{}:  Object.keys(a).length === 0</li>
-<li>[]: <ul>
-<li>a instanceOf Array   (必须为对象)</li>
-<li>Object.protopype.toString.call(a)  // [object array]</li>
-<li>isArray</li>
+<li><p>null:  !a &amp;&amp; typeof a === ‘object’</p>
+</li>
+<li><p>{}:  Object.keys(a).length === 0</p>
+</li>
+<li><p>[]: </p>
+<ul>
+<li><p>a instanceOf Array   (必须为对象)</p>
+</li>
+<li><p>Object.protopype.toString.call(a)  // [object array]</p>
+<p>Object类型都有内部属性[[Class]]，一般都的通过 Object.prototype.toString.call(…)查看</p>
+</li>
+<li><p>isArray</p>
+</li>
+</ul>
+</li>
+<li><p>NaN: </p>
+<ul>
+<li><p>a===a // false 唯一一个自身与自身不相等</p>
+</li>
+<li><p>Number.isNaN()</p>
+</li>
+</ul>
+</li>
+<li><p>Object.is(a,b)能判断两个值是否相等的全部情况</p>
+<ul>
+<li>Object.is(NaN,NaN) // true</li>
+<li>Object.is(+0,-0) // false</li>
 </ul>
 </li>
 </ul>
-<h3 id="undefined-amp-undeclared"><a href="#undefined-amp-undeclared" class="headerlink" title="undefined &amp; undeclared"></a>undefined &amp; undeclared</h3><p>typeof 处理未初始化和未声明的变量，结果都是 undefined。但是调用未声明的变量会有ReferenceError。检测对象是否声明并初始化时，要不就是用typeOf，要不就用对象格式  </p>
+<h3 id="undefined-amp-undeclared-amp-void"><a href="#undefined-amp-undeclared-amp-void" class="headerlink" title="undefined &amp; undeclared &amp; void"></a>undefined &amp; undeclared &amp; void</h3><p>typeof 处理未初始化和未声明的变量，结果都是 undefined。但是调用未声明的变量会有ReferenceError。检测对象是否声明并初始化时，要不就是用typeOf，要不就用对象格式  </p>
 <p>if(typeof a === ‘undefined’)  or if(window.a)</p>
+<p>void不改变表达式的结果，只是让表达式不返回值</p>
+<h3 id="类数组转数组"><a href="#类数组转数组" class="headerlink" title="类数组转数组"></a>类数组转数组</h3><ul>
+<li><p>Array.from() es6</p>
+</li>
+<li><p>Array.prototype.slice.call()    concat同</p>
+</li>
+</ul>
+<h3 id="判断浮点数是否相等"><a href="#判断浮点数是否相等" class="headerlink" title="判断浮点数是否相等"></a>判断浮点数是否相等</h3><p>由于浮点数精度问题 类似 0.1 + 0.2 === 0.3 // false</p>
+<p>为了解决这一问题 es6 中有 Number.EPSILON(2^-52) 作为误差范围值</p>
+<p>Math.abs(a-b) &lt; Number.EPSILON 来判断两个浮点数是否相等</p>
+<h3 id="封装对象"><a href="#封装对象" class="headerlink" title="封装对象"></a>封装对象</h3><ul>
+<li><p>Object(…)可以自行封装基本类型值 // 同new String() 这类效果一样，都不建议使用， js会默认自动封装</p>
+</li>
+<li><p>new Boolean(false) // true 除null外所有的对象值都为true</p>
+</li>
+<li><p>a.valurOf() 获取封装对象中的基本类型值</p>
+</li>
+<li><p>Object 原型为 null  Array原型为 []  RegExp原型为 /(?:)/  Function的原型是空函数。<font color=red>原型就是最好的默认值</font>，因为.prototype是已经被创建的并且只创建一次，从而避免每次都创建造成的cpu资源和内存的浪费</p>
+</li>
+</ul>
 <blockquote class="blockquote-center"></blockquote>
 
 <div class="note danger"><p>注意：所有文章除特别说明外均属原创，转载请注明出处！</p></div>
@@ -510,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测特殊类型方法"><span class="nav-number">1.</span> <span class="nav-text">检测特殊类型方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined-amp-undeclared"><span class="nav-number">2.</span> <span class="nav-text">undefined &amp; undeclared</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测特殊类型方法"><span class="nav-number">1.</span> <span class="nav-text">检测特殊类型方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined-amp-undeclared-amp-void"><span class="nav-number">2.</span> <span class="nav-text">undefined &amp; undeclared &amp; void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类数组转数组"><span class="nav-number">3.</span> <span class="nav-text">类数组转数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断浮点数是否相等"><span class="nav-number">4.</span> <span class="nav-text">判断浮点数是否相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装对象"><span class="nav-number">5.</span> <span class="nav-text">封装对象</span></a></li></ol></div>
             
 
           </div>
