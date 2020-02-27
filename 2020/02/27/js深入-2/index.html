@@ -85,13 +85,13 @@
 <meta property="og:url" content="http://yoursite.com/2020/02/27/js%E6%B7%B1%E5%85%A5-2/index.html">
 <meta property="og:site_name" content="zhaha&#39;s hole">
 <meta property="og:description" content="事件循环（Event Loop）js是一个单线程、非阻塞的脚本语言。非阻塞就是靠事件循环实现的（event loop）。 js引擎本身并没有异步的概念。“事件”调度总是由包含它的环境执行。  123456789101112131415161718192021222324&#x2F;&#x2F; 全局作用域 windownew Promise((resolve) &#x3D;&gt; &amp;#123;">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2938421-6043ea7d8e140294.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/560/format/webp">
+<meta property="og:image" content="c:%5CUsers%5C41914%5CDesktop%5Cu=4183425458,4136812999&fm=26&gp=0.jpg">
 <meta property="article:published_time" content="2020-02-27T12:32:44.000Z">
-<meta property="article:modified_time" content="2020-02-27T13:45:57.608Z">
+<meta property="article:modified_time" content="2020-02-27T13:54:01.346Z">
 <meta property="article:author" content="zhaha">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2938421-6043ea7d8e140294.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/560/format/webp">
+<meta name="twitter:image" content="c:%5CUsers%5C41914%5CDesktop%5Cu=4183425458,4136812999&fm=26&gp=0.jpg">
 
 
 
@@ -345,7 +345,7 @@
       
         <h2 id="事件循环（Event-Loop）"><a href="#事件循环（Event-Loop）" class="headerlink" title="事件循环（Event Loop）"></a>事件循环（Event Loop）</h2><p>js是一个<code>单线程、非阻塞</code>的脚本语言。非阻塞就是靠事件循环实现的（event loop）。</p>
 <p>js引擎本身并没有异步的概念。“事件”调度总是由包含它的环境执行。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2938421-6043ea7d8e140294.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/560/format/webp" alt="img"></p>
+<p><img src="C:%5CUsers%5C41914%5CDesktop%5Cu=4183425458,4136812999&fm=26&gp=0.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 全局作用域 window</span><br><span class="line">new Promise((resolve) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 作用域 p</span><br><span class="line">    a()</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(b)</span><br><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.log(5)</span><br><span class="line">&#125;,0)</span><br><span class="line">console.log(&#39;4&#39;)</span><br><span class="line">function a()&#123;</span><br><span class="line">    &#x2F;&#x2F; 作用域 a</span><br><span class="line">    console.log(&#39;1&#39;)</span><br><span class="line">    c()</span><br><span class="line">&#125;</span><br><span class="line">function b()&#123;</span><br><span class="line">    &#x2F;&#x2F; 作用域 b</span><br><span class="line">    console.log(‘2’)</span><br><span class="line">&#125;</span><br><span class="line">function c()&#123;</span><br><span class="line">    &#x2F;&#x2F; 作用域 c</span><br><span class="line">    console.log(&#39;3&#39;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;输出 13425</span><br></pre></td></tr></table></figure>
 
 <p>下面以以上代码解释一下js事件循环</p>
